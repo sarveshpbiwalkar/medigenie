@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediGenie - AI-Powered Health Center</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -15,13 +15,13 @@
                 <h1>MediGenie</h1>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="doctors.html">Doctors</a></li>
-                <li><a href="research.html">Studies & Research</a></li>
+                <li><a href="index.php#about">About</a></li>
+                <li><a href="index.php#services">Services</a></li>
+                <li><a href="doctors.php">Doctors</a></li>
+                <li><a href="research.php">Studies & Research</a></li>
             </ul>
             <div class="login">
-                <a href="home.html">
+                <a href="signup-signin.php">
                     <button class="login-btn">Login</button>
                 </a>
             </div>

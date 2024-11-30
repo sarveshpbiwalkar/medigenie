@@ -46,22 +46,7 @@ saveButton.addEventListener('click', () => {
 
 // Sample patient data
 const patients = {
-    "patient1": {
-        name: "John Doe",
-        age: 34,
-        gender: "Male",
-        bloodType: "O+",
-        history: "No significant medical history.",
-        conditions: "No current conditions"
-    },
-    "patient2": {
-        name: "Sarah Smith",
-        age: 28,
-        gender: "Female",
-        bloodType: "A-",
-        history: "Has a history of asthma.",
-        conditions: "Mild hypertension"
-    }
+    "patient1": userData
 };
 
 // Function to show patient details in the modal
@@ -72,11 +57,11 @@ function showPatientDetails(patientId) {
     const patientDetails = `
         <h3>Patient Details:</h3>
         <p><strong>Name:</strong> ${patient.name}</p>
-        <p><strong>Age:</strong> ${patient.age}</p>
+        <p><strong>Age:</strong> ${patient.age} years</p>
         <p><strong>Gender:</strong> ${patient.gender}</p>
-        <p><strong>Blood Type:</strong> ${patient.bloodType}</p>
-        <p><strong>Medical History:</strong> ${patient.history}</p>
-        <p><strong>Current Conditions:</strong> ${patient.conditions}</p>
+        <p><strong>Blood Type:</strong> ${patient.bloodType || 'N/A'}</p>
+        <p><strong>Medical History:</strong> ${patient.history || 'N/A'}</p>
+        <p><strong>Current Conditions:</strong> ${patient.conditions || 'N/A'}</p>
     `;
 
     document.getElementById('patient-details').innerHTML = patientDetails;

@@ -1,11 +1,14 @@
-<?php include 'config.php'; ?>
+<?php 
+include 'config.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediGenie - AI-Powered Health Center</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -15,10 +18,10 @@
                 <h1>MediGenie</h1>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="doctors.html">Doctors</a></li>
-                <li><a href="research.html">Studies & Research</a></li>
+                <li><a href="index.php#about">About</a></li>
+                <li><a href="index.php#services">Services</a></li>
+                <li><a href="doctors.php">Doctors</a></li>
+                <li><a href="research.php">Studies & Research</a></li>
             </ul>
         </nav>
     </header>
@@ -40,17 +43,15 @@
         <section class="patient-list-section">
             <h3>Patient:</h3>
             <div class="patient-list">
-                <!-- Short patient info displayed -->
-                <div class="patient-card" onclick="showPatientDetails('patient1')">
-                    <p>Name: John Doe</p>
-                    <p>Age: 34</p>
-                    <p>Click for more details...</p>
-                </div>
-                <!-- <div class="patient-card" onclick="showPatientDetails('patient2')">
-                    <p>Name: Sarah Smith</p>
-                    <p>Age: 28</p>
-                    <p>Click for more details...</p>
-                </div> -->
+                <?php if (isset($_SESSION['user'])): ?>
+                    <div class="patient-card" onclick="showPatientDetails('patient1')">
+                        <p>Name: <?php echo htmlspecialchars($_SESSION['user']['name']); ?></p>
+                        <p>Age: <?php echo htmlspecialchars($_SESSION['user']['age']); ?> years</p>
+                        <p>Click for more details...</p>
+                    </div>
+                <?php else: ?>
+                    <p>Please log in to see your details.</p>
+                <?php endif; ?>
             </div>
         </section>
     </section>
@@ -64,7 +65,10 @@
             </div>
         </div>
     </div>
-    <script src="speech.js"></script>    
+    <script>
+    const userData = <?php echo json_encode($_SESSION['user']); ?>;
+    </script>
+    <script src="js/speech.js"></script>    
 
 </body>
 </html>

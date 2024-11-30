@@ -2,6 +2,7 @@
 CREATE TABLE doctors (
     doctor_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
+    password VARCHAR(50) NOT NULL,
     organization_id INT NOT NULL,
     specialization VARCHAR(100),
     license_number VARCHAR(50),
