@@ -19,12 +19,14 @@ session_start();
                 <h1>MediGenie</h1>
             </div>
             <ul class="nav-links">
+                <?php if (isset($_SESSION['user']) || isset($_SESSION['admin_logged_in'])): ?>
+                    <li><a href="home.php">Home</a></li>
+                <?php endif; ?>
                 <li><a href="index.php#about">About</a></li>
                 <li><a href="index.php#services">Services</a></li>
                 <li><a href="doctors.php">Doctors</a></li>
                 <li><a href="research.php">Studies & Research</a></li>
             </ul>
-
             <div class="login">
                 <?php if (isset($_SESSION['user']) || isset($_SESSION['admin_logged_in'])): ?>
                     <form action="logout.php" method="post">
@@ -36,7 +38,6 @@ session_start();
                     </a>
                 <?php endif; ?>
             </div>
-            <!-- <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button> -->
         </nav>
     </header>
 

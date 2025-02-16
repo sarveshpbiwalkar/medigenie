@@ -3,6 +3,7 @@ include 'config.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 // Handle form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['login_type'])) {
@@ -40,6 +41,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 echo "Invalid doctor credentials.";
             }
+        } elseif ($login_type == 'admin') {
+            // Admin login
+            $sql = "SELECT * FROM admins WHERE username='$username' AND password='$password'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $_SESSION['admin_logged_in'] = true;
+                header("Location: /admin");
+
+                exit();
+            } else {
+                echo "Invalid admin credentials.";
+            }
         }
     } elseif (isset($_POST['signup'])) {
         // Patient signup
@@ -54,8 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "INSERT INTO users (username, name, email, phone_number, dob, gender, chronic_diseases, password_hash) VALUES ('$username', '$name', '$email', '$phone_number', '$dob', '$gender', '$chronic_diseases', '$password')";
         if ($conn->query($sql) === TRUE) {
-            $_SESSION['signup_success'] = "Patient signup successful!"; // Set session variable
-            header("Location: signup-signin.php"); // Redirect to the same page
+            $_SESSION['signup_success'] = "Patient signup successful!";
+            header("Location: /signup-signin");
+
             exit();
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
