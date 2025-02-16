@@ -1,0 +1,19 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Set the base URL
+RewriteBase /medigenie/
+
+# Prevent directory listing
+Options -Indexes
+
+# Allow access to specific file types
+<FilesMatch "\.(php|html|css|js|jpg|png|gif)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# Redirect all requests to index.php if file doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L,QSA]

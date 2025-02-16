@@ -7,7 +7,11 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-image: url(../imgs/signup-in-bg.png);
+    background-color: #f0f0f0; /* Fallback color */
+    background-image: url(/medigenie/imgs/signup-in-bg.png);
+
+    background-size: cover;
+    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,6 +19,7 @@ body {
     height: 100vh;
     overflow: hidden;
 }
+
 
 /* Form Container */
 .form-container {
@@ -81,7 +86,8 @@ button:hover {
 
 /* Links */
 .signup-link,
-.doctor-login-link {
+.doctor-login-link,
+.admin-login-link {
     margin-top: 15px;
     display: block;
     color: #4C88FF;
@@ -90,7 +96,8 @@ button:hover {
 }
 
 .signup-link:hover,
-.doctor-login-link:hover {
+.doctor-login-link:hover,
+.admin-login-link:hover {
     color: #3B6FCC;
 }
 
