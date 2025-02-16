@@ -1,4 +1,8 @@
-<?php include 'config.php'; ?>
+<?php 
+include 'config.php';
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,17 +19,25 @@
                 <h1>MediGenie</h1>
             </div>
             <ul class="nav-links">
+                <?php if (isset($_SESSION['user']) || isset($_SESSION['admin_logged_in'])): ?>
+                    <li><a href="home">Home</a></li>
+                <?php endif; ?>
                 <li><a href="index.php#about">About</a></li>
                 <li><a href="index.php#services">Services</a></li>
                 <li><a href="doctors.php">Doctors</a></li>
                 <li><a href="research.php">Studies & Research</a></li>
             </ul>
             <div class="login">
-                <a href="signup-signin.php">
-                    <button class="login-btn">Login</button>
-                </a>
+                <?php if (isset($_SESSION['user']) || isset($_SESSION['admin_logged_in'])): ?>
+                    <form action="logout.php" method="post">
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                <?php else: ?>
+                    <a href="signup-signin.php">
+                        <button class="login-btn">Login</button>
+                    </a>
+                <?php endif; ?>
             </div>
-            <!-- <button class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button> -->
         </nav>
     </header>
 
@@ -39,7 +51,7 @@
             </div>
             <div class="doctor-info">
                 <p>Over 80 highly qualified specialists</p>
-                <!-- <img src="doctor-placeholder.png" alt="Doctor" class="banner-image"> -->
+                <!-- <img src="imgs/doctor-placeholder.png" alt="Doctor" class="banner-image"> -->
             </div>
         </div>
     </section>
@@ -97,6 +109,5 @@
             document.body.classList.toggle('dark-mode');
         }
     </script>
-
 </body>
 </html>

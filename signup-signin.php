@@ -1,7 +1,8 @@
 <?php 
-include 'config.php'; 
-session_start();
-
+include 'config.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Handle form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['login_type'])) {
@@ -14,12 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "SELECT * FROM users WHERE username='$username' AND password_hash='$password'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
-                $user = $result->fetch_assoc(); // Fetch user details
-                // Calculate age from date of birth
-                $dob = new DateTime($user['dob']); // Assuming 'dob' is the column name in your database
+                $user = $result->fetch_assoc();
+                $dob = new DateTime($user['dob']);
                 $today = new DateTime();
-                $age = $today->diff($dob)->y; // Calculate age in years
-                // Store user details in session
+                $age = $today->diff($dob)->y;
                 $_SESSION['user'] = [
                     'name' => $user['name'],
                     'age' => $age,
@@ -41,6 +40,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 echo "Invalid doctor credentials.";
             }
+        } elseif ($login_type == 'admin') {
+            // Admin login
+            $sql = "SELECT * FROM admins WHERE username='$username' AND password='$password'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $_SESSION['admin_logged_in'] = true;
+                header("Location: /admin");
+
+                exit();
+            } else {
+                echo "Invalid admin credentials.";
+            }
         }
     } elseif (isset($_POST['signup'])) {
         // Patient signup
@@ -55,8 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "INSERT INTO users (username, name, email, phone_number, dob, gender, chronic_diseases, password_hash) VALUES ('$username', '$name', '$email', '$phone_number', '$dob', '$gender', '$chronic_diseases', '$password')";
         if ($conn->query($sql) === TRUE) {
-            $_SESSION['signup_success'] = "Patient signup successful!"; // Set session variable
-            header("Location: signup-signin.php"); // Redirect to the same page
+            $_SESSION['signup_success'] = "Patient signup successful!";
+            header("Location: /signup-signin");
+
             exit();
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
@@ -78,8 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Login to MediGenie</h2>
     <div class="form-container">
         <h2>Patient Login</h2>
-        
-        <!-- Patient Login Form -->
         <form method="POST" action="">
             <input type="hidden" name="login_type" value="patient">
             <label for="username">Username:</label>
@@ -89,9 +99,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-        
         <span class="signup-link" id="signupBtn">Not registered? Sign Up</span>
         <span class="doctor-login-link" id="doctorLoginBtn">Login as Doctor</span>
+        <span class="admin-login-link" id="adminLoginBtn">Login as Admin</span>
     </div>
 
     <!-- Modal for User Signup -->
@@ -136,43 +146,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
+    <!-- Modal for Admin Login -->
+    <div id="adminLoginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeAdminLoginModal">&times;</span>
+            <h3>Admin Login</h3>
+            <br><br>
+            <form method="POST" action="">
+                <input type="hidden" name="login_type" value="admin">
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="Username" required>
+                <br><br>
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         // Get modal elements
         var signupModal = document.getElementById("signupModal");
         var doctorLoginModal = document.getElementById("doctorLoginModal");
+        var adminLoginModal = document.getElementById("adminLoginModal");
         var signupBtn = document.getElementById("signupBtn");
         var doctorLoginBtn = document.getElementById("doctorLoginBtn");
+        var adminLoginBtn = document.getElementById("adminLoginBtn");
         var closeSignupModal = document.getElementById("closeSignupModal");
         var closeDoctorLoginModal = document.getElementById("closeDoctorLoginModal");
+        var closeAdminLoginModal = document.getElementById("closeAdminLoginModal");
 
-        // Open signup modal on button click
-        signupBtn.onclick = function() {
-            signupModal.style.display = "flex";
-        }
+        // Open modals on button clicks
+        signupBtn.onclick = function() { signupModal.style.display = "flex"; }
+        doctorLoginBtn.onclick = function() { doctorLoginModal.style.display = "flex"; }
+        adminLoginBtn.onclick = function() { adminLoginModal.style.display = "flex"; }
 
-        // Open doctor login modal on button click
-        doctorLoginBtn.onclick = function() {
-            doctorLoginModal.style.display = "flex";
-        }
+        // Close modals on close button clicks
+        closeSignupModal.onclick = function() { signupModal.style.display = "none"; }
+        closeDoctorLoginModal.onclick = function() { doctorLoginModal.style.display = "none"; }
+        closeAdminLoginModal.onclick = function() { adminLoginModal.style.display = "none"; }
 
-        // Close signup modal on close button click
-        closeSignupModal.onclick = function() {
-            signupModal.style.display = "none";
-        }
-
-        // Close doctor login modal on close button click
-        closeDoctorLoginModal.onclick = function() {
-            doctorLoginModal.style.display = "none";
-        }
-
-        // Close modal if user clicks outside of the modal
+        // Close modals when clicking outside
         window.onclick = function(event) {
-            if (event.target == signupModal) {
-                signupModal.style.display = "none";
-            }
-            if (event.target == doctorLoginModal) {
-                doctorLoginModal.style.display = "none";
-            }
+            if (event.target == signupModal) signupModal.style.display = "none";
+            if (event.target == doctorLoginModal) doctorLoginModal.style.display = "none";
+            if (event.target == adminLoginModal) adminLoginModal.style.display = "none";
         }
     </script>
 </body>

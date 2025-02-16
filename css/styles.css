@@ -10,45 +10,96 @@ body {
     background-color: #F7F7FA;
 }
 
-/* Navbar Styling */
+/* Navbar Styles */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 80px;
-    background-color: #fff;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
+.logo h1 {
+    color: #7219b1;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Navigation Links */
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 2rem;
+    align-items: center;
 }
 
 .nav-links a {
     text-decoration: none;
     color: #333;
-    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-.login .login-btn {
-    background-color: #4C88FF;
+.nav-links a:hover {
+    color: #8A2BE2;
+    background-color: rgba(106, 13, 173, 0.1);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #9370DB;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Button Styles */
+.login-btn, .logout-btn {
+    background-color: #8A2BE2;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.login-btn:hover {
-    background-color: #3B6FCC;
+.login-btn:hover, .logout-btn:hover {
+    background-color: #6A0DAD;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.login-btn:active, .logout-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* Banner Section */
 .banner {
     background-color: #e0e0ff;
-    padding: 40px 80px;
+    color: white;
+    padding: 2rem;
+    text-align: center;
 }
 
 .banner-content {
@@ -84,6 +135,8 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .doctor-info {
@@ -98,6 +151,7 @@ body {
 }
 
 .doctor-info p {
+    color: #000;
     margin-right: 150px;
     margin-top: 10px;
     margin-left: 20px;
@@ -113,27 +167,32 @@ body {
     padding: 40px 80px;
 }
 
+
+/* Card Section */
 .card-section {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: space-around;
+    padding: 2rem;
+    flex-wrap: wrap;
 }
 
 .card {
     background-image: url(../imgs/card-background.jpg);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    width: 30%;
-    height: 150px;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     text-align: center;
+    width: 30%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 20px;
 }
 
-.card p {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
+/* About Section */
 .about-section {
     margin-top: 40px;
     text-align: center;
@@ -148,6 +207,7 @@ body {
 
 .benefits-section {
     margin-top: 40px;
+    padding: 2rem;
     text-align: center;
 }
 
@@ -189,6 +249,10 @@ body {
 .research-section {
     padding: 50px 80px;
     background-color: #e0e0ff;
+}
+
+.services-section {
+    padding: 2rem;
     text-align: center;
 }
 
@@ -301,66 +365,62 @@ body {
 .patient-card {
     background-color: #e0e0ff;
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease;
 }
 
 .patient-card:hover {
-    transform: scale(1.02);
+transform: scale(1.02);
 }
 
 .patient-card p {
-    margin: 5px 0;
-    font-size: 1.1rem;
+margin: 5px 0;
+font-size: 1.1rem;
 }
 
 /* Modal for Detailed Information */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 100; /* Higher z-index so it's above the background */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 150%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    backdrop-filter: blur(5px); /* Blurs the background */
+display: none; /* Hidden by default */
+position: fixed;
+z-index: 100; /* Higher z-index so it's above the background */
+left: 0;
+top: 0;
+width: 100%;
+height: 150%;
+background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+backdrop-filter: blur(5px); /* Blurs the background */
 }
 
 .modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 101; /* Ensure it's above the modal's background */
+background-color: #fff;
+margin: 15% auto;
+padding: 20px;
+border-radius: 10px;
+width: 50%;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+position: relative;
+z-index: 101; /* Ensure it's above the modal's background */
 }
 
 /* Close button */
 .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
+position: absolute;
+top: 10px;
+right: 20px;
+font-size: 24px;
+cursor: pointer;
 }
 
 .close-btn:hover {
-    color: red;
+color: red;
 }
 
 /* Blur effect for background content when modal is open */
 .blur-background {
-    filter: blur(5px);
-    pointer-events: none; /* Prevents interaction with background content */
+filter: blur(5px);
+pointer-events: none; /* Prevents interaction with background content */
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* Responsive Styles */
-
 /* Tablets and smaller devices */
 @media (max-width: 1024px) {
     .navbar {
@@ -452,109 +512,22 @@ body {
     }
 }
 
-/* Dark mode */
+/* Dark Mode */
 .dark-mode {
-    background-color: #181818;
-    color: #f0f0f0;
+    background-color: #333;
+    color: #fff;
 }
 
 .dark-mode .navbar {
-    background-color: rgba(32, 32, 32, 0.6);
+    background-color: #222;
 }
 
 .dark-mode .nav-links a {
-    color: #f0f0f0;
+    color: #fff;
 }
 
-.dark-mode .login-btn {
-    background-color: #3B6FCC;
-}
-
-.dark-mode .login-btn:hover {
-    background-color: #4C88FF;
-}
-
-.dark-mode .banner {
-    background-color: rgba(93, 93, 125, 0.6);
-}
-
-.dark-mode .text-content {
-    background-color: rgba(32, 32, 32, 0.6);
-}
-
-.dark-mode .text-content h1 {
-    color: #f0f0f0;
-}
-
-.dark-mode .text-content p {
-    color: #aaaaaa;
-}
-
-.dark-mode .cta-btn {
-    background-color: #3B6FCC;
-}
-
-.dark-mode .cta-btn:hover {
-    background-color: #4C88FF;
-}
-
-.dark-mode .card {
-    background: rgba(32, 32, 32, 0.6);
-}
-
-.dark-mode .card p {
-    color: #f0f0f0;
-}
-
-.dark-mode .services h2 {
-    color: #f0f0f0;
-}
-
-.dark-mode .modal-content {
-    background-color: rgba(32, 32, 32, 0.6);
-}
-
-.dark-mode-toggle {
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #4C88FF;
-    color: white;
-    border: none;
-    margin-right: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.dark-mode-toggle:hover {
-    background-color: #3B6FCC;
-}
-
-.dark-mode .dark-mode-toggle {
-    background-color: #3B6FCC;
-}
-
-.dark-mode .dark-mode-toggle:hover {
-    background-color: #4C88FF;
-}
-
-/* Responsive Styles (Adjustments for Dark Mode & Glassmorphism) */
-@media (max-width: 1024px) {
-    .glass-effect {
-        backdrop-filter: blur(8px);
-    }
-}
-
-/* Glassmorphism effect */
-.glass-effect {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: background 0.3s ease, border 0.3s ease;
-}
-
-.dark-mode .glass-effect {
-    background: rgba(32, 32, 32, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.dark-mode .card,
+.dark-mode .service-card {
+    background-color: #444;
+    color: #fff;
 }

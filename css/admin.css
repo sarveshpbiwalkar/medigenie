@@ -1,0 +1,78 @@
+/* Admin Panel Styles */
+.admin-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.add-doctor, .remove-doctor {
+    background: #fff;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.add-doctor h2, .remove-doctor h2 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+.add-doctor form, .remove-doctor form {
+    display: grid;
+    gap: 1rem;
+}
+
+.add-doctor input, .remove-doctor select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.add-doctor button, .remove-doctor button {
+    background-color: #4C88FF;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.add-doctor button:hover, .remove-doctor button:hover {
+    background-color: #3B6FCC;
+    transform: translateY(-2px);
+}
+
+
+.message {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 0 0.5rem;
+    }
+    
+    .add-doctor, .remove-doctor {
+        padding: 1rem;
+    }
+}
