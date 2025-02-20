@@ -8,7 +8,7 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f0; /* Fallback color */
-    background-image: url(/medigenie/imgs/signup-in-bg.png);
+    background-image: url(../imgs/signup-in-bg.png);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -21,7 +21,7 @@ body {
 
 /* Form Container */
 .form-container {
-    background: #e0e0ff;
+    background: #e0e0ff72;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     padding: 30px;
@@ -34,7 +34,7 @@ body {
 /* Headings */
 h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #fff;
 }
 
 label{
@@ -67,7 +67,7 @@ select:focus {
 
 /* Buttons */
 button {
-    background-color: #4C88FF;
+    background-color: #1f69ff;
     color: white;
     padding: 12px;
     border: none;
@@ -88,7 +88,7 @@ button:hover {
 .admin-login-link {
     margin-top: 15px;
     display: block;
-    color: #4C88FF;
+    color: #0055ff;
     cursor: pointer;
     transition: color 0.3s;
 }

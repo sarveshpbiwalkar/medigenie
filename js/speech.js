@@ -1,9 +1,11 @@
-// Check if the browser supports Web Speech API
+// Web Speech API setup
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 
-recognition.lang = 'en-US';  // Set the language
-recognition.interimResults = false;  // Only get final results, not interim
+// Configuration for long conversations
+recognition.lang = 'en-US';
+recognition.interimResults = true;  // Show interim results
+recognition.continuous = true;      // Enable continuous recognition
 recognition.maxAlternatives = 1;
 
 const startButton = document.getElementById('start-record');
@@ -12,6 +14,15 @@ const transcriptArea = document.getElementById('transcript');
 
 let recognizedText = "";
 
+// Handle speech start/end events
+recognition.onspeechstart = () => {
+    console.log('Speech started');
+};
+
+recognition.onspeechend = () => {
+    console.log('Speech ended');
+};
+
 // Start speech recognition when the user clicks the button
 startButton.addEventListener('click', () => {
     recognition.start();
@@ -19,17 +30,37 @@ startButton.addEventListener('click', () => {
     startButton.innerHTML = "Listening...";
 });
 
-// Capture speech results
+// Handle recognition results
 recognition.onresult = (event) => {
-    recognizedText = event.results[0][0].transcript;
+    let interimTranscript = '';
+    let finalTranscript = '';
+
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+        } else {
+            interimTranscript += event.results[i][0].transcript;
+        }
+    }
+
+    recognizedText = finalTranscript || interimTranscript;
     transcriptArea.value = recognizedText;
-    startButton.innerHTML = "Start Recording";
     saveButton.style.display = "inline-block";
 };
 
 // Error handling
 recognition.onerror = (event) => {
-    alert("Error occurred in recognition: " + event.error);
+    if (event.error !== 'no-speech') {
+        alert("Error occurred in recognition: " + event.error);
+    }
+    startButton.innerHTML = "Start Recording";
+};
+
+// Handle when recognition ends
+recognition.onend = () => {
+    if (recognizedText) {
+        saveButton.style.display = "inline-block";
+    }
     startButton.innerHTML = "Start Recording";
 };
 
@@ -41,8 +72,6 @@ saveButton.addEventListener('click', () => {
     link.download = "recognized-speech.txt";
     link.click();
 });
-
-
 
 // Sample patient data
 const patients = {

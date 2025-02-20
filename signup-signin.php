@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $_SESSION['admin_logged_in'] = true;
-                header("Location: /admin");
+                header("Location: admin.php");
 
                 exit();
             } else {
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO users (username, name, email, phone_number, dob, gender, chronic_diseases, password_hash) VALUES ('$username', '$name', '$email', '$phone_number', '$dob', '$gender', '$chronic_diseases', '$password')";
         if ($conn->query($sql) === TRUE) {
             $_SESSION['signup_success'] = "Patient signup successful!";
-            header("Location: /signup-signin");
+            header("Location: signup-signin.php");
 
             exit();
         } else {
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediGenie - User Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/signup-in.css">
 </head>
 <body>
