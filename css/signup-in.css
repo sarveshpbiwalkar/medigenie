@@ -182,7 +182,17 @@ body {
 }
 
 /* Form Container */
-.form-container,
+.form-container{
+    background: #e0e0ff72;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 350px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
 .modal-content {
     background: none;
     box-shadow: none;

@@ -94,14 +94,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <img src="imgs\illustration.svg" alt="Doctor Illustration" />
         </div>
         <div class="auth-form">
-            <h2>Login to MediGenie</h2>
             <div class="form-container">
                 <h2>Patient Login</h2>
                 <form method="POST" action="">
                     <input type="hidden" name="login_type" value="patient">
                     <label for="username">Username:</label>
                     <input type="text" name="username" placeholder="Username" required>
-                    <br><br>
                     <label for="password">Password:</label>
                     <input type="password" name="password" placeholder="Password" required>
                     <button type="submit">Login</button>
@@ -145,7 +143,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="hidden" name="login_type" value="doctor">
                         <label for="username">Username:</label>
                         <input type="text" name="username" placeholder="Username" required>
-                        <br><br>
                         <label for="password">Password:</label>
                         <input type="password" name="password" placeholder="Password" required>
                         <button type="submit">Login</button>
@@ -163,7 +160,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="hidden" name="login_type" value="admin">
                         <label for="username">Username:</label>
                         <input type="text" name="username" placeholder="Username" required>
-                        <br><br>
                         <label for="password">Password:</label>
                         <input type="password" name="password" placeholder="Password" required>
                         <button type="submit">Login</button>
