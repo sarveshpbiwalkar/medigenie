@@ -32,13 +32,20 @@
     min-width: 400px;
     box-sizing: border-box;
     min-height: 100vh;
+    color: #181a20; /* Ensure dark text */
+    border-radius: 18px; /* Rounded corners */
+    box-shadow: 0 8px 32px rgba(162,89,255,0.10), 0 2px 12px #0001; /* Soft shadow */
+    border: 1.5px solid #e0e0e0; /* Subtle border */
 }
 
 .auth-form h1 {
     font-size: 2.5rem;
+}
+
+.auth-form h1, .auth-form h2 {
+    color: #a259ff;
     font-weight: 700;
     margin-bottom: 12px;
-    color: #181a20;
     text-align: center;
 }
 
@@ -58,14 +65,26 @@
 }
 
 .auth-form input[type="text"],
-.auth-form input[type="password"] {
-    padding: 12px 14px;
-    border: 1px solid #e0e0e0;
-    border-radius: 7px;
-    font-size: 1rem;
-    background: #fafafa;
-    margin-bottom: 0;
-    width: 100%;
+.auth-form input[type="password"],
+.auth-form input[type="email"],
+.auth-form input[type="date"],
+.auth-form select {
+    margin-bottom: 14px !important; /* More space between fields */
+    background: #f5f6fa !important;
+    border: 1.5px solid #d1d5db !important;
+    color: #181a20 !important;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.auth-form input[type="text"]:focus,
+.auth-form input[type="password"]:focus,
+.auth-form input[type="email"]:focus,
+.auth-form input[type="date"]:focus,
+.auth-form select:focus {
+    border: 1.5px solid #a259ff !important;
+    box-shadow: 0 0 0 2px #a259ff22;
+    background: #fff !important;
+    outline: none;
 }
 
 .form-row {
@@ -85,38 +104,29 @@
 }
 
 button {
-    background: #181a20;
+    background: linear-gradient(90deg, #a259ff 60%, #6e56cf 100%);
     color: #fff;
     border: none;
-    border-radius: 7px;
     padding: 12px 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
 
 button:hover {
     background: #23263a;
+    color: #fff;
 }
 
 .google-btn {
     background: #fff;
     color: #181a20;
-    border: 1px solid #e0e0e0;
-    border-radius: 7px;
-    padding: 12px 0;
-    font-size: 1.1rem;
-    font-weight: 500;
+    border: 1.5px solid #e0e0e0;
     margin-top: 10px;
-    cursor: pointer;
     transition: background 0.2s, color 0.2s;
 }
 
 .google-btn:hover {
     background: #f4f4f4;
-    color: #4CAF50;
+    color: #a259ff;
 }
 
 .signup-link-row {
