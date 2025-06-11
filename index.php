@@ -92,17 +92,19 @@ session_start();
     <!-- Services Section -->
     <section id="services" class="services-section">
         <h2>Our AI-Powered Services</h2>
-        <div class="service-card">
-            <h3>AI-Assisted Diagnosis</h3>
-            <p>We leverage AI to provide fast and accurate diagnostics, giving doctors real-time insights to make informed decisions.</p>
-        </div>
-        <div class="service-card">
-            <h3>Personalized Treatment</h3>
-            <p>Our system recommends medication based on patient history, offering personalized care plans tailored to individual needs.</p>
-        </div>
-        <div class="service-card">
-            <h3>Data Summarization</h3>
-            <p>Summarizing vast amounts of clinical data, our AI-driven technology allows doctors to quickly assess patient histories and act efficiently.</p>
+        <div class="services">
+            <div class="service-card">
+                <h3>AI-Assisted Diagnosis</h3>
+                <p>We leverage AI to provide fast and accurate diagnostics, giving doctors real-time insights to make informed decisions.</p>
+            </div>
+            <div class="service-card">
+                <h3>Personalized Treatment</h3>
+                <p>Our system recommends medication based on patient history, offering personalized care plans tailored to individual needs.</p>
+            </div>
+            <div class="service-card">
+                <h3>Data Summarization</h3>
+                <p>Summarizing vast amounts of clinical data, our AI-driven technology allows doctors to quickly assess patient histories and act efficiently.</p>
+            </div>
         </div>
     </section>
 

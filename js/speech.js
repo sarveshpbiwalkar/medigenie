@@ -5,10 +5,11 @@ const recognition = new SpeechRecognition();
 // Configuration for long conversations
 recognition.lang = 'en-US';
 recognition.interimResults = true;  // Show interim results
-recognition.continuous = true;      // Enable continuous recognition
+recognition.continuous = false;      // Enable continuous recognition
 recognition.maxAlternatives = 1;
 
 const startButton = document.getElementById('start-record');
+const stopButton = document.getElementById('stop-record');
 const saveButton = document.getElementById('save-text');
 const transcriptArea = document.getElementById('transcript');
 
@@ -23,11 +24,23 @@ recognition.onspeechend = () => {
     console.log('Speech ended');
 };
 
+window.onload = function() {
+    document.getElementById("start-record").disabled = false;
+    document.getElementById("stop-record").disabled = true;
+};
+
 // Start speech recognition when the user clicks the button
 startButton.addEventListener('click', () => {
     recognition.start();
     transcriptArea.value = "Listening...";
-    startButton.innerHTML = "Listening...";
+    startButton.disabled = true;
+    stopButton.disabled = false;
+});
+
+stopButton.addEventListener('click', () => {
+    recognition.stop();
+    startButton.disabled = false;
+    stopButton.disabled = true;
 });
 
 // Handle recognition results
@@ -58,9 +71,8 @@ recognition.onerror = (event) => {
 
 // Handle when recognition ends
 recognition.onend = () => {
-    if (recognizedText) {
-        saveButton.style.display = "inline-block";
-    }
+    startButton.disabled = false;
+    stopButton.disabled = true;
     startButton.innerHTML = "Start Recording";
 };
 

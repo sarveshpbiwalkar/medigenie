@@ -1,0 +1,195 @@
+body {
+    background: #181a20;
+    color: #f1f1f1;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #23263a;
+    padding: 0;
+    margin-bottom: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 70px;
+}
+
+.logo h1 {
+    color: #7a359a;
+    font-size: 2em;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    color: #f1f1f1;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover {
+    background: #4CAF50;
+    color: #fff;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 32px;
+    max-width: 1500px;
+    margin: 20px auto;
+    padding: 0 8px;
+}
+
+.dashboard-card {
+    background: #23263a;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    padding: 32px 24px;
+    min-width: 320px;
+    color: #f1f1f1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.summary-card {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+}
+
+.patient-card {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+}
+
+.audio-card {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.disease-card {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    margin-bottom: 0;
+}
+
+.medication-card {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    margin-bottom: 0;
+}
+
+.patient-avatar {
+    width: 64px;
+    height: 64px;
+    background: #44485a;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.patient-info {
+    font-size: 1.1em;
+    margin-top: 8px;
+}
+
+.audio-card textarea {
+    width: 100%;
+    background: #181a20;
+    color: #f1f1f1;
+    border: 1px solid #44485a;
+    border-radius: 8px;
+    margin: 12px 0;
+    padding: 12px;
+    resize: vertical;
+}
+
+.audio-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.audio-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.disease-content {
+    font-size: 1.1em;
+    min-height: 40px;
+}
+
+.medication-card ul {
+    list-style: none;
+    padding: 0;
+}
+.medication-card li {
+    margin: 8px 0;
+    font-size: 1.1em;
+}
+
+.dashboard-card h2 {
+    margin-top: 0;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+}
+
+.cta-btn {
+    background: #7a359a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    margin: 4px 2px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.cta-btn:hover {
+    background: #460863;
+}
+
+/* Responsive: Stack on small screens */
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+    }
+    .summary-card,
+    .patient-card,
+    .audio-card,
+    .disease-card,
+    .medication-card {
+        grid-column: 1 / 2 !important;
+        grid-row: auto !important;
+    }
+}

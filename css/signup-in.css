@@ -1,3 +1,163 @@
+/* Add or update these styles in signup-in.css */
+
+/* // Main container for two-column layout */
+.auth-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    background: #0c0e16;
+}
+
+.auth-illustration {
+    flex: 1.2;
+    background: #0c0e16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-illustration img {
+    max-width: 80%;
+    height: auto;
+}
+
+.auth-form {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    min-width: 400px;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.auth-form h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #181a20;
+    text-align: center;
+}
+
+.auth-form .subtitle {
+    color: #888;
+    margin-bottom: 32px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.auth-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="password"] {
+    padding: 12px 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #fafafa;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+
+.forgot-link {
+    font-size: 0.98em;
+    color: #181a20;
+    text-decoration: underline;
+    margin-left: 8px;
+    white-space: nowrap;
+}
+
+button {
+    background: #181a20;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #23263a;
+}
+
+.google-btn {
+    background: #fff;
+    color: #181a20;
+    border: 1px solid #e0e0e0;
+    border-radius: 7px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.google-btn:hover {
+    background: #f4f4f4;
+    color: #4CAF50;
+}
+
+.signup-link-row {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 1.05rem;
+    color: #888;
+}
+
+.signup-link-row a {
+    color: #181a20;
+    font-weight: 600;
+    margin-left: 6px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.sr-only {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .auth-container {
+        flex-direction: column;
+    }
+    .auth-illustration {
+        min-height: 220px;
+        padding: 30px 0;
+    }
+    .auth-form {
+        min-width: unset;
+        padding: 40px 16px;
+        min-height: unset;
+    }
+}
+
 /* Reset and General Settings */
 * {
     margin: 0;
@@ -6,35 +166,28 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0; /* Fallback color */
-    background-image: url(../imgs/signup-in-bg.png);
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0c0e16;
+    min-height: 100vh;
 }
 
 /* Form Container */
-.form-container {
-    background: #e0e0ff72;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    width: 350px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    animation: fadeIn 0.5s ease-in-out;
+.form-container,
+.modal-content {
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    width: auto;
+    text-align: left;
+    backdrop-filter: none;
+    animation: none;
 }
 
 /* Headings */
 h2 {
     margin-bottom: 20px;
-    color: #fff;
+    color: #000000;
 }
 
 label{
@@ -48,13 +201,13 @@ input[type="password"],
 input[type="email"],
 input[type="date"],
 select {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.6);
-    transition: background 0.3s ease;
+    /* REMOVE background: rgba(255,255,255,0.6); and margin */
+    background: #fafafa !important;
+    margin: 0 !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 7px !important;
+    padding: 12px 14px !important;
+    font-size: 1rem !important;
 }
 
 input[type="text"]:focus,
@@ -62,24 +215,7 @@ input[type="password"]:focus,
 input[type="email"]:focus,
 input[type="date"]:focus,
 select:focus {
-    background: rgba(255, 255, 255, 0.8);
-}
-
-/* Buttons */
-button {
-    background-color: #1f69ff;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.3s ease, transform 0.2s;
-}
-
-button:hover {
-    background-color: #3B6FCC;
-    transform: translateY(-2px);
+    background: #fff !important;
 }
 
 /* Links */
@@ -114,17 +250,14 @@ button:hover {
 }
 
 .modal-content {
-    background: rgba(255, 255, 255, 0.9);
+    background: #fff;
     padding: 20px;
     border-radius: 15px;
     width: 350px;
     text-align: center;
-    backdrop-filter: blur(10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Close Button */
 .close-btn {
     cursor: pointer;
     float: right;
@@ -145,18 +278,20 @@ button:hover {
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
-    .form-container,
-    .modal-content {
-        width: 90%;
-        padding: 20px;
+@media (max-width: 900px) {
+    .auth-container {
+        flex-direction: column;
     }
-
-    h2 {
-        font-size: 1.8rem;
+    .auth-illustration {
+        min-height: 220px;
+        padding: 30px 0;
     }
-
-    button {
-        padding: 10px;
+    .auth-form {
+        min-width: unset;
+        padding: 40px 16px;
+        min-height: unset;
+    }
+    .auth-form form {
+        max-width: 100%;
     }
 }

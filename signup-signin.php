@@ -88,80 +88,88 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/signup-in.css">
 </head>
 <body>
-    <h2>Login to MediGenie</h2>
-    <div class="form-container">
-        <h2>Patient Login</h2>
-        <form method="POST" action="">
-            <input type="hidden" name="login_type" value="patient">
-            <label for="username">Username:</label>
-            <input type="text" name="username" placeholder="Username" required>
-            <br><br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <span class="signup-link" id="signupBtn">Not registered? Sign Up</span>
-        <span class="doctor-login-link" id="doctorLoginBtn">Login as Doctor</span>
-        <span class="admin-login-link" id="adminLoginBtn">Login as Admin</span>
-    </div>
-
-    <!-- Modal for User Signup -->
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeSignupModal">&times;</span>
-            <h3>Patient Sign Up</h3>
-            <form method="POST" action="">
-                <input type="text" name="signup_username" placeholder="Username" required>
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="phone_number" placeholder="Phone Number" required>
-                <input type="date" name="dob" placeholder="Date of Birth" required>
-                <select name="gender" required>
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
-                <input type="text" name="chronic_diseases" placeholder="Chronic Diseases (if any)">
-                <input type="password" name="signup_password" placeholder="Password" required>
-                <button type="submit" name="signup">Sign Up</button>
-            </form>
+    <div class="auth-container">
+        <div class="auth-illustration">
+            <!-- Replace with your SVG/PNG illustration -->
+            <img src="imgs\illustration.svg" alt="Doctor Illustration" />
         </div>
-    </div>
+        <div class="auth-form">
+            <h2>Login to MediGenie</h2>
+            <div class="form-container">
+                <h2>Patient Login</h2>
+                <form method="POST" action="">
+                    <input type="hidden" name="login_type" value="patient">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <br><br>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <span class="signup-link" id="signupBtn">Not registered? Sign Up</span>
+                <span class="doctor-login-link" id="doctorLoginBtn">Login as Doctor</span>
+                <span class="admin-login-link" id="adminLoginBtn">Login as Admin</span>
+            </div>
 
-    <!-- Modal for Doctor Login -->
-    <div id="doctorLoginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeDoctorLoginModal">&times;</span>
-            <h3>Doctor Login</h3>
-            <br><br>
-            <form method="POST" action="">
-                <input type="hidden" name="login_type" value="doctor">
-                <label for="username">Username:</label>
-                <input type="text" name="username" placeholder="Username" required>
-                <br><br>
-                <label for="password">Password:</label>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    </div>
+            <!-- Modal for User Signup -->
+            <div id="signupModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" id="closeSignupModal">&times;</span>
+                    <h3>Patient Sign Up</h3>
+                    <form method="POST" action="">
+                        <input type="text" name="signup_username" placeholder="Username" required>
+                        <input type="text" name="name" placeholder="Full Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="text" name="phone_number" placeholder="Phone Number" required>
+                        <input type="date" name="dob" placeholder="Date of Birth" required>
+                        <select name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="text" name="chronic_diseases" placeholder="Chronic Diseases (if any)">
+                        <input type="password" name="signup_password" placeholder="Password" required>
+                        <button type="submit" name="signup">Sign Up</button>
+                    </form>
+                </div>
+            </div>
 
-    <!-- Modal for Admin Login -->
-    <div id="adminLoginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeAdminLoginModal">&times;</span>
-            <h3>Admin Login</h3>
-            <br><br>
-            <form method="POST" action="">
-                <input type="hidden" name="login_type" value="admin">
-                <label for="username">Username:</label>
-                <input type="text" name="username" placeholder="Username" required>
-                <br><br>
-                <label for="password">Password:</label>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
+            <!-- Modal for Doctor Login -->
+            <div id="doctorLoginModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" id="closeDoctorLoginModal">&times;</span>
+                    <h3>Doctor Login</h3>
+                    <br><br>
+                    <form method="POST" action="">
+                        <input type="hidden" name="login_type" value="doctor">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" placeholder="Username" required>
+                        <br><br>
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal for Admin Login -->
+            <div id="adminLoginModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" id="closeAdminLoginModal">&times;</span>
+                    <h3>Admin Login</h3>
+                    <br><br>
+                    <form method="POST" action="">
+                        <input type="hidden" name="login_type" value="admin">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" placeholder="Username" required>
+                        <br><br>
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
